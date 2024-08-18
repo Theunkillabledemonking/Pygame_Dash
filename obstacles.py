@@ -1,3 +1,5 @@
+# 장애물의 생성, 이동, 충돌 처리 등 관리
+
 import pygame
 
 def create_obstacles():

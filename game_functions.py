@@ -1,3 +1,5 @@
+# 충돌 처리, 이미지 로드 등 게임 기능 관리 함수
+
 import pygame
 import os
 
@@ -6,12 +8,16 @@ def load_images(image_path):
     current_path = os.path.dirname(__file__)
     image_path = os.path.join(current_path, "image")
     
-    """이미지와 음악을 로드하고 반환하는 함수"""
-    background = pygame.image.load(os.path.join(image_path, "background_part1.png"))
-    player_img = pygame.image.load(os.path.join(image_path, "Cube.png"))
-    player_img = pygame.transform.scale(player_img, (50, 50))  # 원본 크기에 맞게 조정
-    obstacle_img = pygame.image.load(os.path.join(image_path, "spikes.png"))
-    pygame.mixer.music.load(os.path.join(image_path, "stereoMadness.wav"))
+    try:
+        background = pygame.image.load(os.path.join(image_path, "background_part1.png"))
+        player_img = pygame.image.load(os.path.join(image_path, "Cube.png"))
+        player_img = pygame.transform.scale(player_img, (50, 50))  # 원본 크기에 맞게 조정
+        obstacle_img = pygame.image.load(os.path.join(image_path, "spikes.png"))
+        pygame.mixer.music.load(os.path.join(image_path, "stereoMadness.wav"))
+    except pygame.error as e:
+        print(f"Error loading assets: {e}")
+        pygame.quit()
+        exit()
     return background, player_img, obstacle_img
 
 def check_collisions(player, obstacles):
