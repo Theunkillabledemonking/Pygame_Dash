@@ -29,10 +29,10 @@ def run_game():
     player = Player(100, screen_height - 150)
 
     # 배경음악 파일 로드
-    background_music = pygame.mixer.music.load(os.path.join("C:\\Users\\USER\\Desktop\\Geometry Dash\\image", "stereoMadness.wav"))
+    #background_music = pygame.mixer.music.load(os.path.join("C:\\Users\\USER\\Desktop\\Geometry Dash\\image", "stereoMadness.wav"))
 
     # 배경음악 무한 반복 재생 시작
-    pygame.mixer.music.play(-1)
+   # pygame.mixer.music.play(-1)
 
     
     # 맵 설정
