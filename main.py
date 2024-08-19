@@ -2,11 +2,13 @@
 
 import pygame
 import sys
+import os
 from setting import screen_width, screen_height, FPS, image_path, map_length
 from game_functions import check_collisions, load_images, calculate_progress
 from player import Player
 from obstacles import create_obstacles, move_obstacles
 from game_map import setup_map
+
 
 def run_game():
     """게임 실행을 위한 메인 함수"""
@@ -26,12 +28,21 @@ def run_game():
     # 플레이어 초기화
     player = Player(100, screen_height - 150)
 
+    # 배경음악 파일 로드
+    background_music = pygame.mixer.music.load(os.path.join("C:\\Users\\USER\\Desktop\\Geometry Dash\\image", "stereoMadness.wav"))
+
+    # 배경음악 무한 반복 재생 시작
+    pygame.mixer.music.play(-1)
+
+    
     # 맵 설정
     _, obstacles = setup_map()
 
     # 게임 루프
     running = True
     bg_x = 0
+    
+    game_speed = 5
     while running:
         dt = clock.tick(FPS) / 1000
         for event in pygame.event.get():
@@ -45,6 +56,10 @@ def run_game():
         screen.blit(background, (bg_x, 0))
         screen.blit(background, (bg_x + bg_width, 0))
 
+        # 배경 스크롤
+        bg_x -= game_speed
+        if bg_x <= -bg_width:
+            bg_x = 0
         # 회전된 플레이어 이미지 그리기
         rotated_image, rotated_rect = player.get_rotated_image()
         screen.blit(rotated_image, rotated_rect.topleft)

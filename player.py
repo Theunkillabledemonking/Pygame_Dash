@@ -24,11 +24,9 @@ class Player:
         
         if keys[pygame.K_SPACE] and not self.is_jumping and not self.space_pressed :
             self.is_jumping = True
-            self.gravity = -7  # 점프 시 중력 설정
+            self.gravity = -8  # 점프 시 중력 설정
             self.rotation_steps = 30  # 30번 회전 (6도씩 회전하여 180도 회전)
             self.space_pressed = True
-            print(self.rotation_steps)
-            print(self.rotation_angle)
 
         if not keys[pygame.K_SPACE]:
             self.space_pressed = False # 스페이스바가 다시 눌릴 수 있도록 설정
