@@ -102,3 +102,4 @@ if __name__ == '__main__':
         # draw_grid(screen)
         clock.tick(FPS)
         pygame.display.update()
+        
